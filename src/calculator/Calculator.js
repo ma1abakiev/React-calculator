@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import Button from './Button'
 import Entry from './Entry'
 
@@ -25,54 +25,67 @@ function Calculator(props) {
     '=',
   ])
 
-  
   const [val, setVal] = useState('')
-  let example = []
+  const [state, setState] = useState('')
+  let example = useMemo(() => {
+    return []
+  },[val])
 
+  
+
+  // const [newArr, setNewArr] = useState([])
 
   function handleSearch(el) {
     if (parseInt(el) <= 9) {
       example.push(el)
+      setState(prev => prev.concat(el))
       console.log(example)
     } else if (el === '+') {
       example.push(el)
+      setState(prev => prev.concat(el))
       console.log(example)
     } else if (el === '-') {
       example.push(el)
+      setState(prev => prev.concat(el))
       console.log(example)
     } else if (el === '*') {
       example.push(el)
+      setState(prev => prev.concat(el))
       console.log(example)
     } else if (el === ':') {
       example.push('/')
+      setState(prev => prev.concat(el))
       console.log(example)
     } else if (el === '%') {
       example.push(el)
+      setState(prev => prev.concat(el))
       console.log(example)
     } else if (el === 'C') {
       setVal('')
+      setState('')
       example = []
     } else if (el === ',') {
-      if(example.includes('.')){
-        return false
-      }
-      else {
-        example.push('.')
-      }
-      
+      example.push('.')
+      setState(prev => prev.concat(el))
       console.log(example)
     } else if (el === '=') {
       example.length >= 1
-        ? (example = setVal(eval(example.join(''))))
+        ? (setVal(eval(example.join(''))))
         : (example = [])
-
-      console.log(example)
+      setState('')
     }
   }
 
+  //
+  useEffect(() => {
+    console.log('Render')
+
+  },[example])
+  //
+
   return (
     <div className="wrapper">
-      <Entry example={example} val={val} setVal={setVal}></Entry>
+      <Entry example={example} val={val} state={state} ></Entry>
       <Button
         handleSearch={handleSearch}
         array={elements}
