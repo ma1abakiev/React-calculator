@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useMemo,  useState } from 'react'
 import Button from './Button'
 import Entry from './Entry'
 
@@ -33,7 +33,6 @@ function Calculator(props) {
 
   
 
-  // const [newArr, setNewArr] = useState([])
 
   function handleSearch(el) {
     if (parseInt(el) <= 9) {
@@ -71,16 +70,13 @@ function Calculator(props) {
     } else if (el === '=') {
       example.length >= 1
         ? (setVal(eval(example.join(''))))
-        : (example = [])
-      setState('')
+        : (example = []) 
+        setState('')
     }
   }
 
   //
-  useEffect(() => {
-    console.log('Render')
-
-  },[example])
+  
   //
 
   return (

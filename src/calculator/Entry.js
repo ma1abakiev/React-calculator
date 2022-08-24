@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-function Entry({val, example, state}) {
+function Entry({val, state}) {
 
   
   return (
     <form>
-      <div className='entry'>{state} {val}</div>
+      <div className='entry'>{state === '' ? val : state}</div>
     </form>
   )
 }
