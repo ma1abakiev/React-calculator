@@ -65,7 +65,7 @@ function Calculator(props) {
       example = []
     } else if (el === ',') {
       example.push('.')
-      setState(prev => prev.concat(el))
+      setState(prev => prev.concat('.'))
       console.log(example)
     } else if (el === '=') {
       example.length >= 1
