@@ -1,4 +1,4 @@
-import React, { useMemo,  useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import Button from './Button'
 import Entry from './Entry'
 
@@ -29,59 +29,59 @@ function Calculator(props) {
   const [state, setState] = useState('')
   let example = useMemo(() => {
     return []
-  },[val])
-
-  
-
+  }, [val])
 
   function handleSearch(el) {
     if (parseInt(el) <= 9) {
       example.push(el)
-      setState(prev => prev.concat(el))
+      setState((prev) => prev.concat(el))
       console.log(example)
     } else if (el === '+') {
       example.push(el)
-      setState(prev => prev.concat(el))
+      setState((prev) => prev.concat(el))
       console.log(example)
     } else if (el === '-') {
       example.push(el)
-      setState(prev => prev.concat(el))
+      setState((prev) => prev.concat(el))
       console.log(example)
     } else if (el === '*') {
       example.push(el)
-      setState(prev => prev.concat(el))
+      setState((prev) => prev.concat(el))
       console.log(example)
     } else if (el === ':') {
       example.push('/')
-      setState(prev => prev.concat(el))
+      setState((prev) => prev.concat(el))
       console.log(example)
     } else if (el === '%') {
       example.push(el)
-      setState(prev => prev.concat(el))
+      setState((prev) => prev.concat(el))
       console.log(example)
+    } else if (el === 'D') {
+      setState(prev => prev.replace())
+      return example.pop()
     } else if (el === 'C') {
       setVal('')
       setState('')
       example = []
     } else if (el === ',') {
       example.push('.')
-      setState(prev => prev.concat('.'))
+      setState((prev) => prev.concat('.'))
       console.log(example)
     } else if (el === '=') {
-      example.length >= 1
-        ? (setVal(eval(example.join(''))))
-        : (example = []) 
-        setState('')
+      example.length >= 1 ? setVal(eval(example.join(''))) : (example = [])
+      setState('')
     }
   }
+  console.log(val)
+  console.log(typeof(val))
 
   //
-  
+
   //
 
   return (
     <div className="wrapper">
-      <Entry example={example} val={val} state={state} ></Entry>
+      <Entry example={example} val={val} state={state}></Entry>
       <Button
         handleSearch={handleSearch}
         array={elements}
